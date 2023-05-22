@@ -1,0 +1,19 @@
+for(p = primeiro; p != NULL; p = p → proximo)
+    free(p);
+
+p = p->next has undefined behavior once p has been freed with free(p) 
+because the object pointed to by p is no longer valid to access, 
+then provide a corrected version, either as a while loop or a for loop.
+
+p = first;
+while (p != NULL) {
+    struct node *next_node = p->next;
+    free(p);
+    p = next_node;
+}
+
+for (p = first; p != NULL; ) {
+    struct node *next_node = p->next;
+    free(p);
+    p = next_node;
+}
